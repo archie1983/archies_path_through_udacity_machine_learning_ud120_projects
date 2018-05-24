@@ -26,8 +26,8 @@ features_train, features_test, labels_train, labels_test = preprocess()
 from sklearn.svm import SVC
 clf = SVC(kernel="rbf", C=10000.0)
 
-#features_train = features_train[:len(features_train)/100]
-#labels_train = labels_train[:len(labels_train)/100]
+features_train = features_train[:len(features_train)/100]
+labels_train = labels_train[:len(labels_train)/100]
 
 t0 = time()
 clf.fit(features_train, labels_train)
@@ -44,4 +44,6 @@ acc = accuracy_score(pred, labels_test)
 print "accuracy calculation time:", round(time()-t0, 3), "s"
 
 print "Accuracy = ",acc
+
+print "Class for Elem 10:",pred[10]," Class for Elem 26:",pred[26]," Class for elem 50:", pred[50]
 #########################################################
