@@ -34,7 +34,7 @@ from time import time
 
 from sklearn.ensemble import AdaBoostClassifier
 t0 = time()
-clf = AdaBoostClassifier()
+clf = AdaBoostClassifier(n_estimators=50, learning_rate=1.93)
 clf.fit(features_train, labels_train)
 print "Training time: ",round(time() - t0, 3)
 
