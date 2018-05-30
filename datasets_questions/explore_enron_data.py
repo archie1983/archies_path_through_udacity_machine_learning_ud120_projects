@@ -24,9 +24,13 @@ print "Number of people in dataset: ",len(enron_data)
 print "Number of features per person: ",len(enron_data["CORDES WILLIAM R"])
 
 pois = 0
+salaries_cnt = 0
+email_addr_cnt = 0
 for person, features in enron_data.iteritems():
     if features["poi"] == 1:
         pois += 1
+    if features["salary"] != "NaN": salaries_cnt += 1
+    if features["email_address"] != "NaN": email_addr_cnt += 1
 
 print "Numner of POIs: ",pois
 
@@ -34,3 +38,5 @@ print "Numner of POIs: ",pois
 print "Total value of the stock belonging to James Prentice: ", enron_data["PRENTICE JAMES"]["total_stock_value"]
 print "Number of email messages from Wesley Colwell to POIs: ", enron_data["COLWELL WESLEY"]["from_this_person_to_poi"]
 print "Value of stock options exercised for Jeffrey K Skilling: ", enron_data["SKILLING JEFFREY K"]["exercised_stock_options"]
+print "Number of salaries in data set: ",salaries_cnt
+print "Number of email addresses in data set: ",email_addr_cnt
