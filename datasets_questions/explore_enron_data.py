@@ -22,3 +22,10 @@ enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r")
 print "Number of people in dataset: ",len(enron_data)
 #print "People's names: ",enron_data.keys()
 print "Number of features per person: ",len(enron_data["CORDES WILLIAM R"])
+
+pois = 0
+for person, features in enron_data.iteritems():
+    if features["poi"] == 1:
+        pois += 1
+
+print "Numner of POIs: ",pois
