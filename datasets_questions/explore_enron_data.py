@@ -29,3 +29,6 @@ for person, features in enron_data.iteritems():
         pois += 1
 
 print "Numner of POIs: ",pois
+
+#print "Features of James Prentice: ",enron_data["PRENTICE JAMES"]
+print "Total value of the stock belonging to James Prentice: ", enron_data["PRENTICE JAMES"]["total_stock_value"]
