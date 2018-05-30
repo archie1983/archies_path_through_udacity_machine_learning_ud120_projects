@@ -33,3 +33,4 @@ print "Numner of POIs: ",pois
 #print "Features of James Prentice: ",enron_data["PRENTICE JAMES"]
 print "Total value of the stock belonging to James Prentice: ", enron_data["PRENTICE JAMES"]["total_stock_value"]
 print "Number of email messages from Wesley Colwell to POIs: ", enron_data["COLWELL WESLEY"]["from_this_person_to_poi"]
+print "Value of stock options exercised for Jeffrey K Skilling: ", enron_data["SKILLING JEFFREY K"]["exercised_stock_options"]
