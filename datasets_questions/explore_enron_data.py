@@ -20,3 +20,5 @@ import pickle
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
 
 print "Number of people in dataset: ",len(enron_data)
+#print "People's names: ",enron_data.keys()
+print "Number of features per person: ",len(enron_data["CORDES WILLIAM R"])
