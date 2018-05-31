@@ -28,6 +28,7 @@ pois = 0
 salaries_cnt = 0
 email_addr_cnt = 0
 total_payments_nan = 0
+pois_total_payments_nan = 0
 
 for person, features in enron_data.iteritems():
     if features["poi"] == 1:
@@ -35,6 +36,7 @@ for person, features in enron_data.iteritems():
     if features["salary"] != "NaN": salaries_cnt += 1
     if features["email_address"] != "NaN": email_addr_cnt += 1
     if features["total_payments"] == "NaN": total_payments_nan += 1
+    if (features["total_payments"] == "NaN" and features["poi"] == 1): pois_total_payments_nan += 1
 
 print "Numner of POIs: ",pois
 
@@ -46,3 +48,4 @@ print "Number of salaries in data set: ",salaries_cnt
 print "Number of email addresses in data set: ",email_addr_cnt
 print "Number of people with NaN for their total payments: ",total_payments_nan
 print "Percentage of people with NaN for their total payments: ", round(100.0 * total_payments_nan / number_of_people, 3)
+print "Percentage of POIs with NaN for their total payments: ", round(100.0 * pois_total_payments_nan / pois, 3)
