@@ -42,7 +42,8 @@ reg = LinearRegression()
 reg.fit(feature_train, target_train)
 
 print "Slope: ",reg.coef_,"\nIntercept: ",reg.intercept_
-
+print "R-squared score: ",reg.score(feature_test, target_test)
+print "R-squared score ran on training data (should be big if fit is good): ",reg.score(feature_train, target_train)
 
 
 
