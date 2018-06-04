@@ -15,6 +15,20 @@ def outlierCleaner(predictions, ages, net_worths):
 
     ### your code goes here
 
-    
+    # First let's create the end list structure of the tuples
+    #cleaned_data = zip(ages, net_worths, predictions - net_worths)
+    data_length = len(net_worths)
+    for i in range(data_length):
+        node = (ages[i][0], net_worths[i][0], abs(net_worths[i][0] - predictions[i][0]))
+        cleaned_data.append(node)
+
+    #print cleaned_data[:10]
+    # now let's sort it
+    cleaned_data = sorted(cleaned_data, key = lambda node: node[2])
+
+    #finally let's trim it
+    cleaned_data = cleaned_data[:int(data_length * 0.9)]
+    #print "TRIMMED"
+    #print cleaned_data[:10]
     return cleaned_data
 
