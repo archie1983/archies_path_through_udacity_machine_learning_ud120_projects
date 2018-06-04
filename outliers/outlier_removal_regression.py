@@ -80,6 +80,9 @@ if len(cleaned_data) > 0:
     plt.ylabel("net worths")
     plt.show()
 
+    print "Slope after cleaning 10% of outliers: ",reg.coef_
+    print "r square score after cleaning 10% of outliers: ",reg.score(ages_test, net_worths_test)
+
 
 else:
     print "outlierCleaner() is returning an empty list, no refitting to be done"
