@@ -30,7 +30,7 @@ from sklearn.linear_model import LinearRegression
 reg = LinearRegression()
 reg.fit(ages_train, net_worths_train)
 print "Slope: ",reg.coef_
-
+print "r square score: ",reg.score(ages_test, net_worths_test)
 
 
 
