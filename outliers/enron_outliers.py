@@ -18,7 +18,7 @@ keys = data_dict.keys()
 #print data_dict
 i = 0
 for key,val in data_dict.items():
-    if val['salary'] > 1000000: print key,":s:",val['salary'],":b:",val['bonus']
+    if (val['salary'] > 1000000 and val['salary'] != "NaN"): print key,":s:",val['salary'],":b:",val['bonus']
 
 for point in data:
     salary = point[0]
