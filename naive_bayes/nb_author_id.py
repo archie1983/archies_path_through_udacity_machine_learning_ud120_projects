@@ -21,6 +21,7 @@ from email_preprocess import preprocess
 ### labels_train and labels_test are the corresponding item labels
 features_train, features_test, labels_train, labels_test = preprocess()
 
+#print features_train[0][0:100], features_test[0][0:100], labels_train, labels_test
 
 
 
