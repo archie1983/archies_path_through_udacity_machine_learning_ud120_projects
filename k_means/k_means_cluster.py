@@ -50,17 +50,34 @@ eso = 0
 max_sal = -1
 min_sal = 10000000
 sal = 0
+# we will also collect all salaries and all exercised_stock_options to apply scaling on them
+sals = []
+esos = []
 for key, val in data_dict.items():
     eso = val["exercised_stock_options"]
     if (eso != "NaN" and eso > max_eso): max_eso = eso
     if (eso != "NaN" and eso < min_eso): min_eso = eso
+    if (eso != "NaN"): esos.append([eso * 1.0])
 
     sal = val["salary"]
     if (sal != "NaN" and sal > max_sal): max_sal = sal
     if (sal != "NaN" and sal < min_sal): min_sal = sal
+    if (sal != "NaN"): sals.append([sal * 1.0])
 
 print "max exercised_stock_options: ",max_eso,"\nmin exercised_stock_options: ",min_eso
 print "max salary: ",max_sal,"\nmin salary: ",min_sal
+
+# scaling salary and exercised_stock_options
+from sklearn.preprocessing import MinMaxScaler
+mms_sal = MinMaxScaler()
+mms_eso = MinMaxScaler()
+
+rescaled_sals = mms_sal.fit_transform(sals)
+rescaled_esos = mms_eso.fit_transform(esos)
+#print "scale of re-scaled salaries: ",mms_sal.scale_," and for $200 000 that gives us: ",(mms_sal.scale_ * 200000.0)
+print "scale of re-scaled salaries: ",mms_sal.scale_," and for $200 000 that gives us: ",mms_sal.transform([[200000.0]])
+print "scale of re-scaled exercised_stock_options: ",mms_eso.scale_," and for $1 000 000 that gives us: ",mms_eso.transform([[1000000.0]])
+
 
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
@@ -87,7 +104,6 @@ from sklearn.cluster import KMeans
 kmeans = KMeans(n_clusters=2, max_iter=300, n_init=20)
 kmeans.fit(finance_features)
 pred = kmeans.predict(finance_features)
-
 
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
