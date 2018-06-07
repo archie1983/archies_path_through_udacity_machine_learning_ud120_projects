@@ -83,5 +83,7 @@ tfidf = TfidfVectorizer(max_df=1.0, stop_words='english')
 vector = tfidf.fit_transform(word_data)
 #print "tfidf.get_stop_words(): ",tfidf.get_stop_words()
 #print "vector: ",vector
-print "number of feature names",len(tfidf.get_feature_names())," incidence of word 'view': ",tfidf.vocabulary_.get("view")
+vectorised_words = tfidf.get_feature_names()
+print "number of feature names",len(vectorised_words)," incidence of word 'view': ",tfidf.vocabulary_.get("view")
 #print "tfidf.stop_words_: ",tfidf.stop_words_
+print "word[34597]: ",vectorised_words[34597]
