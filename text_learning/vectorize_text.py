@@ -41,7 +41,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
     for path in from_person:
         ### only look at first 200 emails when developing
         ### once everything is working, remove this line to run over full dataset
-        temp_counter += 1
+#        temp_counter += 1
         if temp_counter < 200:
             path = os.path.join('..', path[:-1])
             print path
@@ -52,10 +52,10 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
 
             ### use str.replace() to remove any instances of the words
             ### ["sara", "shackleton", "chris", "germani"]
-            email_text.replace("sara", "")
-            email_text.replace("shackleton", "")
-            email_text.replace("chris", "")
-            email_text.replace("germani", "")
+            email_text = email_text.replace("sara", "")
+            email_text = email_text.replace("shackleton", "")
+            email_text = email_text.replace("chris", "")
+            email_text = email_text.replace("germani", "")
 
             ### append the text to word_data
             word_data.append(email_text)
@@ -78,5 +78,10 @@ print "word_data[152]: ",word_data[152]
 
 
 ### in Part 4, do TfIdf vectorization here
-
-
+from sklearn.feature_extraction.text import TfidfVectorizer
+tfidf = TfidfVectorizer(max_df=1.0, stop_words='english')
+vector = tfidf.fit_transform(word_data)
+#print "tfidf.get_stop_words(): ",tfidf.get_stop_words()
+#print "vector: ",vector
+print "number of feature names",len(tfidf.get_feature_names())," incidence of word 'view': ",tfidf.vocabulary_.get("view")
+#print "tfidf.stop_words_: ",tfidf.stop_words_
