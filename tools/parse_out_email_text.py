@@ -28,7 +28,11 @@ def parseOutText(f):
         text_string = content[1].translate(string.maketrans("", ""), string.punctuation)
 
         ### project part 2: comment out the line below
-        words = text_string
+#        words = text_string
+        ### We will now go through every word in the email and stem it and keep the result in a new list
+        st = SnowballStemmer("english")
+        for word in text_string.split():
+            words += st.stem(word) + " "
 
         ### split the text string into individual words, stem each word,
         ### and append the stemmed word to words (make sure there's a single
