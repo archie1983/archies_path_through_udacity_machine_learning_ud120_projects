@@ -57,6 +57,11 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             email_text = email_text.replace("chris", "")
             email_text = email_text.replace("germani", "")
 
+            # turns out that there are some signature words that alone can label the emails. To make sure
+            # that we don't get higher than necessary bias, we need to remove it.
+            email_text = email_text.replace("sshacklensf", "")
+            email_text = email_text.replace("cgermannsf", "")
+
             ### append the text to word_data
             word_data.append(email_text)
 

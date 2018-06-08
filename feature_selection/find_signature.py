@@ -58,5 +58,5 @@ for importance in clf.feature_importances_:
         offending_importance_index = i
     i += 1
 
-# finding and printing out the feature (word) with the highest importance
-print "offending feature (word): ",vectorizer.get_feature_names()[offending_importance_index]
+# finding and printing out the data point (word) with the highest importance
+print "offending data point (word): ",vectorizer.get_feature_names()[offending_importance_index]
