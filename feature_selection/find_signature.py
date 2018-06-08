@@ -51,7 +51,12 @@ print "Accuracy of overfitted decision tree: ",acc
 # going through feature_importances_ attribute and printing out all words, that are with
 # importance of 0.2 or greater
 i = 0
+offending_importance_index = 0
 for importance in clf.feature_importances_:
     if importance > 0.2: 
         print "coefficient: ",i," : ",importance
+        offending_importance_index = i
     i += 1
+
+# finding and printing out the feature (word) with the highest importance
+print "offending feature (word): ",vectorizer.get_feature_names()[offending_importance_index]
