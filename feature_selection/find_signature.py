@@ -38,10 +38,20 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+# Creating and overfitting a decision tree classifier
 from sklearn import tree
 clf = tree.DecisionTreeClassifier()
 clf.fit(features_train, labels_train)
 
+# printing out accuracy of the overfit decision tree classifier
 from sklearn.metrics import accuracy_score
 acc = accuracy_score(clf.predict(features_test), labels_test)
 print "Accuracy of overfitted decision tree: ",acc
+
+# going through feature_importances_ attribute and printing out all words, that are with
+# importance of 0.2 or greater
+i = 0
+for importance in clf.feature_importances_:
+    if importance > 0.2: 
+        print "coefficient: ",i," : ",importance
+    i += 1
