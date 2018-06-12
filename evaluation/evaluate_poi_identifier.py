@@ -49,3 +49,8 @@ ucounts = dict(zip(unique, counts))
 
 print "Predicted POIs in test set: ",ucounts[1.0]
 print "Total number of people predicted in set: ",len(pois_in_test_set)
+
+print "POIs in test labels: ",test_labels.count(1)
+print "Non POIs in test labels: ",test_labels.count(0)
+acc_if_0 = (len(test_labels) - test_labels.count(1)) * 1.0 / len(test_labels)
+print "If my classifier predicted 0 (Non-POI) in all cases, it's accuracy would be (correct predictions / total predictions): ",acc_if_0
