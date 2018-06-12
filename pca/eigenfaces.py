@@ -28,6 +28,7 @@ from sklearn.datasets import fetch_lfw_people
 from sklearn.grid_search import GridSearchCV
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
+#from sklearn.decomposition import PCA
 from sklearn.decomposition import RandomizedPCA
 from sklearn.svm import SVC
 
@@ -70,10 +71,13 @@ n_components = 150
 
 print "Extracting the top %d eigenfaces from %d faces" % (n_components, X_train.shape[0])
 t0 = time()
+#pca = PCA(svd_solver='randomized', n_components=n_components, whiten=True).fit(X_train)
 pca = RandomizedPCA(n_components=n_components, whiten=True).fit(X_train)
 print "done in %0.3fs" % (time() - t0)
 
 eigenfaces = pca.components_.reshape((n_components, h, w))
+
+print "Two largest variance ratios: ",pca.explained_variance_ratio_[0]," and: ",pca.explained_variance_ratio_[1]
 
 print "Projecting the input data on the eigenfaces orthonormal basis"
 t0 = time()
@@ -81,7 +85,7 @@ X_train_pca = pca.transform(X_train)
 X_test_pca = pca.transform(X_test)
 print "done in %0.3fs" % (time() - t0)
 
-
+exit()
 ###############################################################################
 # Train a SVM classification model
 
