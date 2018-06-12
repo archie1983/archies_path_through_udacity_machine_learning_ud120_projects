@@ -43,5 +43,14 @@ print "Accuracy of an overfitted tree: ",acc
 from sklearn.model_selection import train_test_split
 train_features, test_features, train_labels, test_labels = train_test_split(features, labels, test_size=0.3, random_state=42)
 clf.fit(train_features, train_labels)
-acc = accuracy_score(test_labels, clf.predict(test_features))
+
+pois_in_test_set = clf.predict(test_features)
+
+acc = accuracy_score(test_labels, pois_in_test_set)
 print "Accuracy of a non-overfitted tree",acc
+
+import numpy
+unique, counts = numpy.unique(pois_in_test_set, return_counts=True)
+ucounts = dict(zip(unique, counts))
+
+print "POIs in test set: ",ucounts[1.0]
