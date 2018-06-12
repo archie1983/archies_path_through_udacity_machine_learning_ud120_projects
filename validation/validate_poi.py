@@ -37,4 +37,11 @@ clf.fit(features, labels)
 # importing accuracy score and checking the accuracy of the decision tree (should be 100% because it's checked on training data)
 from sklearn.metrics import accuracy_score
 acc = accuracy_score(labels, clf.predict(features))
-print "Accuracy of an overfit tree: ",acc
+print "Accuracy of an overfitted tree: ",acc
+
+# Now we will do better-- we will split the data into training and test sets and work with that
+from sklearn.model_selection import train_test_split
+train_features, test_features, train_labels, test_labels = train_test_split(features, labels, test_size=0.3, random_state=42)
+clf.fit(train_features, train_labels)
+acc = accuracy_score(test_labels, clf.predict(test_features))
+print "Accuracy of a non-overfitted tree",acc
