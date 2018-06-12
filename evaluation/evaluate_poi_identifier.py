@@ -56,9 +56,13 @@ acc_if_0 = (len(test_labels) - test_labels.count(1)) * 1.0 / len(test_labels)
 print "If my classifier predicted 0 (Non-POI) in all cases, it's accuracy would be (correct predictions / total predictions): ",acc_if_0
 
 # Getting a confusion matrix
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, precision_score, recall_score
 print "Confusion matrix: "
 print confusion_matrix(test_labels, pois_in_test_set)
 
 print "test_labels: ",test_labels
 print "predicted: ",pois_in_test_set
+
+# Printing precision score and recall score
+print "Precision score: ",precision_score(test_labels, pois_in_test_set)
+print "Recall score: ",recall_score(test_labels, pois_in_test_set)
