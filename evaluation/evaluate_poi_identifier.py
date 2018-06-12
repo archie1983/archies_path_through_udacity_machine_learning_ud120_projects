@@ -27,5 +27,25 @@ labels, features = targetFeatureSplit(data)
 
 
 ### your code goes here 
+# Conditioning data into test and training sets
+from sklearn.model_selection import train_test_split
+train_features, test_features, train_labels, test_labels = train_test_split(features, labels, test_size=0.3, random_state=42)
 
+# Importing SKlearn tree classifier and fitting
+from sklearn import tree
+clf = tree.DecisionTreeClassifier()
+clf.fit(train_features, train_labels)
 
+# Importing SKlearn metrics to calculate accuracy
+from sklearn.metrics import accuracy_score
+acc = accuracy_score(test_labels, clf.predict(test_features))
+print "Accuracy of a non-overfitted tree: ",acc
+
+pois_in_test_set = clf.predict(test_features)
+
+import numpy
+unique, counts = numpy.unique(pois_in_test_set, return_counts=True)
+ucounts = dict(zip(unique, counts))
+
+print "Predicted POIs in test set: ",ucounts[1.0]
+print "Total number of people predicted in set: ",len(pois_in_test_set)

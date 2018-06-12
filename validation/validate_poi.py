@@ -54,3 +54,4 @@ unique, counts = numpy.unique(pois_in_test_set, return_counts=True)
 ucounts = dict(zip(unique, counts))
 
 print "POIs in test set: ",ucounts[1.0]
+print "Total number of people in set: ",len(pois_in_test_set)
