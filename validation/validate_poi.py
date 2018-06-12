@@ -29,4 +29,12 @@ labels, features = targetFeatureSplit(data)
 
 ### it's all yours from here forward!  
 
+# importing and creating a DecisionTreeClassifier
+from sklearn import tree
+clf = tree.DecisionTreeClassifier()
+clf.fit(features, labels)
 
+# importing accuracy score and checking the accuracy of the decision tree (should be 100% because it's checked on training data)
+from sklearn.metrics import accuracy_score
+acc = accuracy_score(labels, clf.predict(features))
+print "Accuracy of an overfit tree: ",acc
